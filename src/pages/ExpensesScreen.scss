@@ -1,0 +1,86 @@
+.page-expenses {
+  background-color: var(--background);
+  height: 100vh;
+  > .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 16px;
+
+    > .total-wrapper {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      .total-label {
+        color: var(--text);
+        font-size: 17px;
+      }
+      .group-by-filter {
+        margin-left: 16px;
+        background: unset;
+        border: unset;
+        .group-by-label {
+          font-size: 17px;
+          text-decoration: none;
+        }
+      }
+    }
+    .expense-list {
+      flex: 1 1 auto;
+      height: 100vh;
+    }
+    .amount-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100%;
+      margin-bottom: 16px;
+      .currency {
+        color: var(--textSecondary);
+        font-size: 17px;
+        margin-top: 2;
+      }
+      .amount {
+        color: var(--text);
+        font-size: 40px;
+        font-weight: 600;
+        margin-left: 2px;
+      }
+    }
+  }
+  .expense-list {
+    display: flex;
+    flex: 1;
+  }
+
+  .bottomSheetHandleStyle {
+    background-color: var(--card);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  .handle {
+    background-color: #ffffff55;
+  }
+  .bottom-sheet {
+    font-size: 18px;
+    text-transform: capitalize;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    bottom: 68px;
+    background-color: var(--card);
+    .group-by-item {
+      padding: 12px 18px;
+      background-color: unset;
+      border: unset;
+      > a {
+        text-decoration: none;
+      }
+    }
+  }
+}

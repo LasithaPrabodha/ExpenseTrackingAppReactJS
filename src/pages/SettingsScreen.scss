@@ -1,0 +1,11 @@
+.settingsScreen {
+  height: calc(100vh - 16px);
+  background-color: var(--background);
+  padding: 16px 16px 0;
+  text-align: center;
+  .container {
+    border-radius: 11px;
+    padding: 0 16px;
+    background-color: var(--card);
+  }
+}

@@ -1,0 +1,51 @@
+.expenses-list {
+    height: 100%;
+    padding: 0 16px;
+  
+   > .item-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 24px;
+  
+      .item-day-text {
+        margin-bottom: 4px;
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--textSecondary);
+        border-bottom: 2px solid var(--border); // Use actual border styling
+        margin-bottom: 8px;
+        display: flex;
+        width: 100%;
+      }
+    
+  
+      .total-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 2px solid var(--border); // Use actual border styling
+        margin-top: 4px;
+  
+        .total-label {
+          font-size: 17px;
+          color: var(--textSecondary);
+        }
+  
+        .total {
+          color: var(--textSecondary);
+          font-size: 17px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }

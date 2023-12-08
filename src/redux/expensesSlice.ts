@@ -12,7 +12,22 @@ const now = new Date(
 );
 
 const initialState: ExpensesState = {
-  expenses: [],
+  expenses: [ new Expense({
+    id: '1',
+    amount: 10,
+    recurrence: Recurrence.Daily,
+    date: now,
+    note: 'Dollarama',
+    category: new Category({id: '1', color: '#ff0000', name: 'Anan Manan'}),
+  }),
+  new Expense({
+    id: '2',
+    amount: 20,
+    recurrence: Recurrence.Daily,
+    date: now,
+    note: 'Tim Hortons',
+    category: new Category({id: '2', color: '#00ff00', name: 'Coffee'}),
+  }),],
 };
 
 const expensesSlice = createSlice({
