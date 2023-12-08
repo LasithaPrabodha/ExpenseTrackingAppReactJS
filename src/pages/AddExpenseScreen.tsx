@@ -65,6 +65,7 @@ export const AddExpenseScreen = (): JSX.Element => {
     // add
 
     if (!amount || !note) {
+      alert("Please fill both amount and note")
       return;
     }
 
@@ -82,8 +83,8 @@ export const AddExpenseScreen = (): JSX.Element => {
   };
 
   return (
-    <div className="addExpenseScreen">
-      <div className="newExpenseForm">
+    <div className="page add-expense-screen">
+      <div className="new-expense-form">
         <ListItem
           label="Amount"
           detail={
@@ -119,6 +120,7 @@ export const AddExpenseScreen = (): JSX.Element => {
               id="start"
               name="trip-start"
               value={new Date(date).toISOString().split("T")[0]}
+              onChange={()=>{}}
               min={
                 new Date(new Date().getFullYear() - 1, new Date().getMonth(), new Date().getDate())
                   .toISOString()
@@ -154,21 +156,21 @@ export const AddExpenseScreen = (): JSX.Element => {
           }
         />
       </div>
-      <button className="submitBtn" onClick={submitExpense}>
-        <span className="submitBtnText">Submit expense</span>
+      <button className="submit-btn" onClick={submitExpense}>
+        <span className="submit-btn-text">Submit expense</span>
       </button>
 
       <div className="bottom-sheet" ref={bottomSheetRef}>
         {sheetView === "recurrence" &&
           Object.values(Recurrence).map((rec) => (
-            <button key={rec} className="bottomSheetBtn" onClick={() => selectRecurrence(rec)}>
+            <button key={rec} className="btn-bottom-sheet" onClick={() => selectRecurrence(rec)}>
               {rec}
             </button>
           ))}
         {sheetView === "category" &&
           categories.map((cat) => (
-            <button key={cat.id} className="bottomSheetBtn" onClick={() => selectCategory(cat)}>
-              <div className="categoryColor" style={{ backgroundColor: cat.color }}></div>
+            <button key={cat.id} className="btn-bottom-sheet" onClick={() => selectCategory(cat)}>
+              <div className="category-color" style={{ backgroundColor: cat.color }}></div>
               <span className="category">{cat.name}</span>
             </button>
           ))}

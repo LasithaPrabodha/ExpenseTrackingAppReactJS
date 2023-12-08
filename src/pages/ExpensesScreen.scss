@@ -1,6 +1,4 @@
 .page-expenses {
-  background-color: var(--background);
-  height: 100vh;
   > .container {
     display: flex;
     flex-direction: column;
@@ -25,6 +23,8 @@
         .group-by-label {
           font-size: 17px;
           text-decoration: none;
+          color: var(--primary);
+          cursor: pointer;
         }
       }
     }
@@ -57,16 +57,7 @@
     flex: 1;
   }
 
-  .bottomSheetHandleStyle {
-    background-color: var(--card);
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-  }
-  .handle {
-    background-color: #ffffff55;
-  }
   .bottom-sheet {
-    font-size: 18px;
     text-transform: capitalize;
     display: none;
     flex-direction: column;
@@ -74,10 +65,13 @@
     width: 100%;
     bottom: 68px;
     background-color: var(--card);
+    left: 0;
     .group-by-item {
       padding: 12px 18px;
       background-color: unset;
       border: unset;
+      margin: 8px 0;
+      font-size: 16px;
       > a {
         text-decoration: none;
       }

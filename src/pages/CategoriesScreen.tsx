@@ -36,51 +36,32 @@ export const CategoriesScreen = (): JSX.Element => {
     setNewName("");
     setSelectedColor("#0a84ff");
   };
-
-  const deleteCategory = () => {};
+ 
 
   return (
-    <div className="categories">
-      <div className="scrollView">
-        <div className="categoriesWrapper">
+    <div className="page categories">
+      <div className="scroll-view">
+        <div className="categories-wrapper">
           {categories.map(({ id, color, name }) => (
-            <CategoryRow color={color} name={name} />
+            <CategoryRow key={id} color={color} name={name} />
           ))}
         </div>
       </div>
-      <div className="newCategoryWrapper">
+      <div className="new-category-wrapper">
         <a onClick={() => setShowColorPicker(!showColorPicker)}>
-          <div className="categoryColor" style={{ backgroundColor: selectedColor }} />
+          <div className="category-color" style={{ backgroundColor: selectedColor }} />
         </a>
         <input
           placeholder="Category name"
           onChange={(event) => setNewName(event.target.value)}
           value={newName}
-          className="newCategoryInput"
+          className="new-category-input"
         />
-        <a onClick={createCategory} className="sendButton">
-          <FontAwesomeIcon icon={faPlus}  />
+        <a onClick={createCategory} className="btn-add">
+          <FontAwesomeIcon icon={faPlus} />
         </a>
       </div>
-
-      {/* <Modal
-        transparent
-        visible={showColorPicker}
-        animationType="fade"
-        onRequestClose={() => setShowColorPicker(false)}
-      >
-        <div style={styles.colorPickerModal}>
-          <div style={styles.colorPickerWrapper}>
-            <ColorPicker
-              hideSliders
-              color={selectedColor}
-              onColorChange={(color) => onSelectColor(fromHsv(color))}
-              style={styles.colorPicker}
-            />
-            <Button onPress={() => setShowColorPicker(false)} title="Select" />
-          </div>
-        </div>
-      </Modal> */}
+      
     </div>
   );
 };

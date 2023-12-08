@@ -1,0 +1,33 @@
+.header {
+  height: 50px;
+  width: 100%;
+  background-color: var(--card);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .btn-back{
+      position: absolute;
+      left: 20px;
+  }
+}
+
+.title {
+  color: var(--text);
+  font-weight: bold;
+}
+
+.header a {
+  text-decoration: none;
+  text-align: center;
+  color: var(--text);
+}
+
+.page {
+  height: calc(100vh - 50px - 16px);
+  background-color: var(--background);
+  padding: 16px 16px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}

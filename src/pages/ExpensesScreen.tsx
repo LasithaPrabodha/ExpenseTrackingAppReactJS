@@ -35,11 +35,11 @@ export const ExpensesScreen = (): JSX.Element => {
 
   const changeRecurrence = (newRecurrence: Recurrence) => {
     setRecurrence(newRecurrence);
-    toggleBottomSheet()
+    toggleBottomSheet();
   };
 
   const toggleBottomSheet = () => {
-    const elm = recurrenceSheetRef.current!; 
+    const elm = recurrenceSheetRef.current!;
     if (elm.style.display === "none" || elm.style.display === "") {
       elm.style.display = "flex";
     } else {
@@ -48,12 +48,12 @@ export const ExpensesScreen = (): JSX.Element => {
   };
 
   return (
-    <div className="page-expenses">
+    <div className="page page-expenses">
       <div className="container">
         <div className="total-wrapper">
           <span className="total-label">Total for:</span>
           <button className="group-by-filter" onClick={() => {}}>
-            <a href="javascript:void(0)" onClick={() => toggleBottomSheet()} className="group-by-label">
+            <a onClick={() => toggleBottomSheet()} className="group-by-label">
               This {getPlainRecurrence(recurrence)}
             </a>
           </button>
@@ -69,7 +69,6 @@ export const ExpensesScreen = (): JSX.Element => {
         {[Recurrence.Daily, Recurrence.Weekly, Recurrence.Monthly, Recurrence.Yearly].map((item) => (
           <button key={item} className="group-by-item" onClick={() => changeRecurrence(item)}>
             <a
-              href="javascript:void(0)"
               style={{
                 color: recurrence === item ? "var(--primary)" : "var(--text)",
               }}
