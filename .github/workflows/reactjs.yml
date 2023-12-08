@@ -11,9 +11,6 @@ on:
 
 jobs:
   build:
-    permissions:
-      id-token: write
-      pages: write
     runs-on: ubuntu-latest
 
     strategy:
@@ -34,6 +31,9 @@ jobs:
         CI: ""
  # Deployment job
   deploy:
+    permissions:
+      id-token: write
+      pages: write
     environment:
       name: github-pages
       url: ${{steps.deployment.outputs.page_url}}
