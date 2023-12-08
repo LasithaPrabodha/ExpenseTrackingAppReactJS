@@ -1,87 +1,40 @@
 .categories {
-  height: calc(100vh - 16px);
-  background-color: var(--background);
-  padding: 16px 16px 0;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.scrollView {
-  flex: 1;
-  .categoriesWrapper {
-    border-radius: 11px;
-    padding: 0 16px;
-    background-color: var(--card);
-  }
-  .categoryItemWrapper {
-    background-color: var(--error);
-    width: 75px;
-  }
-}
-.categoryButton {
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-}
-.newCategoryWrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  padding: 8px 0;
-
-  .categoryColor {
-    width: 32px;
-    height: 32px;
-    border-radius: 16px;
-    border-width: 3px;
-    border-color: var(--border);
-  }
-  .newCategoryInput {
-    color: var(--text);
-    height: 40px;
-    border-color: var(--border);
-    background-color: var(--border);
-    border-width: 1px;
+  .scroll-view {
     flex: 1;
-    border-radius: 8px;
-    padding-left: 8px;
-    margin-left: 16px;
+    .categories-wrapper {
+      border-radius: 11px;
+      padding: 0 16px;
+      background-color: var(--card);
+    }
   }
+  .new-category-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 8px 0;
 
-  .sendButton {
-    padding: 12px;
-    color: var(--text);
+    .category-color {
+      width: 32px;
+      height: 32px;
+      border-radius: 16px;
+      border-width: 3px;
+      border-color: var(--border);
+    }
+    .new-category-input {
+      color: var(--text);
+      height: 40px;
+      border-color: var(--border);
+      background-color: var(--border);
+      border-width: 1px;
+      flex: 1;
+      border-radius: 8px;
+      padding-left: 8px;
+      margin-left: 16px;
+    }
+
+    .btn-add {
+      padding: 12px;
+      color: var(--text);
+    }
   }
-}
-.colorPickerModal {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 24px;
-  background-color: "rgba(0; 0; 0; 0.5)";
-}
-.colorPickerWrapper {
-  padding: 24;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--card);
-  overflow: hidden;
-  border-radius: 12px;
-}
-.colorPicker {
-  width: 100%;
-  height: 300px;
-}
-.dismissWrapper {
-  height: 44;
-  display: flex;
-  justify-content: center;
-  padding: 0 16px;
-  align-items: flex-end;
-  background-color: var(--card);
-  border-top-color: var(--border);
-  border-top-width: 1px;
 }

@@ -1,9 +1,5 @@
-.addExpenseScreen {
-  height: calc(100vh - 16px);
-  background-color: var(--background);
-  padding: 16px 16px 0;
-  text-align: center;
-  .newExpenseForm {
+.add-expense-screen {
+  .new-expense-form {
     border-radius: 11px;
     padding: 0 16px;
     background-color: var(--card);
@@ -16,7 +12,7 @@
       font-size: 16px;
       text-align: right;
       background-color: transparent;
-      &:focus-visible{
+      &:focus-visible {
         outline: none;
       }
     }
@@ -34,23 +30,26 @@
       font-size: 16px;
     }
 
-    .date-picker{
+    .date-picker {
       background: var(--datePicker);
       padding: 4px;
       border-radius: 4px;
       border: unset;
     }
   }
-  .submitBtn {
+  .submit-btn {
     background-color: var(--primary);
     padding: 13px 20px;
     border-radius: 10px;
     border: none;
+    width: fit-content;
+    margin: 0 auto;
     margin-top: 32px;
-    .submitBtnText {
+    .submit-btn-text {
       color: white;
       font-weight: 600;
       font-size: 17px;
+      cursor: pointer;
     }
   }
   .bottom-sheet {
@@ -63,7 +62,7 @@
     bottom: 68px;
     left: 0;
 
-    .bottomSheetBtn {
+    .btn-bottom-sheet {
       display: flex;
       width: 100%;
       padding: 12px;
@@ -78,7 +77,7 @@
       background-color: transparent;
       text-transform: capitalize;
     }
-    .categoryColor {
+    .category-color {
       width: 12px;
       height: 12px;
       border-radius: 6px;

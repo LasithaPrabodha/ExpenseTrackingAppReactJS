@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { ListItem } from "../components/ListItem";
 import { ThemeContext } from "../Theme";
@@ -11,42 +11,33 @@ import { useNavigate } from "react-router-dom";
 export const SettingsScreen = (): JSX.Element => {
   const navigate = useNavigate();
   const onClickErase = () => {
-    // alert(
-    //   "Are you sure?",
-    //   "This action cannot be undone",
-    //   [
-    //     {
-    //       text: "Cancel",
-    //       onPress: () => {},
-    //       style: "cancel",
-    //     },
-    //     {
-    //       text: "Erase data",
-    //       style: "destructive",
-    //       onPress: () => {},
-    //     },
-    //   ],
-    //   {
-    //     userInterfaceStyle: "dark",
-    //   }
-    // );
+    if (window.confirm("Are you sure? This action cannot be undone")) {
+    } else {
+    }
   };
 
-  const { setTheme, theme } = React.useContext(ThemeContext);
+  const { setTheme, theme } = useContext(ThemeContext);
 
   return (
-    <div className="settingsScreen">
+    <div className="page settings-screen">
       <div className="container">
         <ListItem
           label="Categories"
-          detail={<FontAwesomeIcon icon={faChevronRight} />}
+          detail={<FontAwesomeIcon icon={faChevronRight} color={theme === "dark-theme" ? "#fff" : "#1c1c1e"} />}
           onClick={() => {
-            navigate('/categories');
+            navigate("/categories", { state: { title: "Categories", separateScreen: true } });
           }}
         />
         <ListItem
           label="Dark Appearance"
-          detail={<Switch uncheckedIcon={false} checkedIcon={false} onChange={(isDark) => setTheme(isDark ? "dark-theme" : "light-theme")} checked={theme === "dark-theme"} />}
+          detail={
+            <Switch
+              uncheckedIcon={false}
+              checkedIcon={false}
+              onChange={(isDark) => setTheme(isDark ? "dark-theme" : "light-theme")}
+              checked={theme === "dark-theme"}
+            />
+          }
         />
         <ListItem isDestructive label="Erase all data" onClick={() => onClickErase()} />
       </div>
