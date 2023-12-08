@@ -1,0 +1,37 @@
+.itemWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 44px;
+    border-bottom: 1px solid var(--border);
+    background-color: var(--card);
+    cursor: pointer;
+    justify-content: flex-start;
+  
+    &.spaceBetween {
+      justify-content: space-between;
+    }
+  
+    .itemText {
+      font-size: 16px;
+      color: var(--text);
+  
+      &.destructive {
+        color: var(--error);
+      }
+    }
+  }
+  
+  .deleteButton {
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    background-color: var(--card);
+    color: var(--text);
+  
+    .deleteText {
+      cursor: pointer;
+    }
+  }
+  

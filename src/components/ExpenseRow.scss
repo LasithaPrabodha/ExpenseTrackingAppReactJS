@@ -1,0 +1,52 @@
+// ExpenseRow.scss
+
+.expense-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+  
+    > .item-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+  
+      .item {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--textPrimary); // Replace with the actual color variable
+      }
+  
+      .amount {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--textPrimary);// Replace with the actual color variable
+      }
+    }
+  
+    .category-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+  
+      .category {
+        padding: 2px 6px;
+        border-radius: 8px;
+      }
+  
+      .category-text {
+        font-size: 13px;
+        // Add color styling as needed
+      }
+  
+      .date {
+        font-size: 17px;
+        color: var(--textSecondary); // Replace with the actual color variable
+      }
+    }
+  }
+  

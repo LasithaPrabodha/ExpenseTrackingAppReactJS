@@ -1,13 +1,37 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+.dark-theme {
+  --primary: #0a84ff;
+  --background: #000000;
+  --card: #151515;
+  --text: #ffffff;
+  --border: #262629;
+  --notification: #0a84ff;
+  --error: #ff453a;
+  --textPrimary: #ffffff;
+  --textSecondary: #ebebf599;
+}
+.light-theme {
+  --background: rgb(242, 242, 242);
+  --border: rgb(216, 216, 216);
+  --card: rgb(255, 255, 255);
+  --notification: rgb(255, 59, 48);
+  --primary: rgb(0, 122, 255);
+  --text: rgb(28, 28, 30);
+  --error: #ff453a;
+  --textPrimary: #3a3a3a;
+  --textSecondary: #9a9a9a;
+}
+
+.App {
+  --datePicker: #eee;
 }
