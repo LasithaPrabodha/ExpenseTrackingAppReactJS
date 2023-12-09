@@ -24,10 +24,8 @@
 }
 
 .page {
-  height: calc(100vh - 50px - 16px);
   background-color: var(--background);
   padding: 16px 16px 0;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+  text-align: center; 
+  flex: 1 ;
 }

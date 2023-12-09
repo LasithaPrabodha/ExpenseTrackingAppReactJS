@@ -2,7 +2,7 @@ import {Recurrence} from '../types/recurrence';
 import {Category} from './category';
 
 export class Expense {
-  id: string;
+  id?: string;
   amount: number;
   recurrence: Recurrence;
   date: Date;
@@ -10,7 +10,7 @@ export class Expense {
   category: Category;
 
   constructor({ id, amount, recurrence, date, note, category }: {
-    id: string;
+    id?: string;
     amount: number;
     recurrence: Recurrence;
     date: Date;
@@ -27,7 +27,6 @@ export class Expense {
 
   toFirestoreObject(): Record<string, any> {
     return {
-      id: this.id,
       amount: this.amount,
       recurrence: this.recurrence,
       date: this.date.toISOString(),

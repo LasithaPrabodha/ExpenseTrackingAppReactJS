@@ -1,9 +1,10 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet  } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpFromBracket, faGear, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "./HomeScreen.scss";
 
 export const HomeScreen = (): JSX.Element => { 
+  
   return (
     <>
       <Outlet />

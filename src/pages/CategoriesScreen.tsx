@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { v4 as uuid } from "uuid";
+import React, { useEffect, useState } from "react";
 
 import { CategoryRow } from "../components/CategoryRow";
 import { Category } from "../models/category";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-import { addCategory } from "../redux/slices/categoriesSlice";
+import { AppDispatch } from "../redux/store";
 
 import "./CategoriesScreen.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { addCategoryAction, fetchCategoriesAction } from "../redux/actions/categoryActions";
+import { allCategoriesSelector } from "../redux/selectors";
 
 export const CategoriesScreen = (): JSX.Element => {
-  const categories: Category[] = useSelector((state: RootState) => state.categories.categories);
-  const dispatch = useDispatch();
+  const categories: Category[] = useSelector(allCategoriesSelector);
+  const dispatch = useDispatch<AppDispatch>();
   const [showColorPicker, setShowColorPicker] = useState(false);
   const [selectedColor, setSelectedColor] = useState("#0a84ff");
   const [newName, setNewName] = useState("");
@@ -22,21 +22,23 @@ export const CategoriesScreen = (): JSX.Element => {
     setSelectedColor(hex);
   };
 
+  useEffect(() => {
+    dispatch(fetchCategoriesAction());
+  }, [dispatch]);
+
   const createCategory = () => {
     if (newName.length === 0) {
       return;
     }
 
     const category = new Category({
-      id: uuid(),
       name: newName,
       color: selectedColor,
     });
-    dispatch(addCategory(category));
+    dispatch(addCategoryAction(category));
     setNewName("");
     setSelectedColor("#0a84ff");
   };
- 
 
   return (
     <div className="page categories">
@@ -61,7 +63,6 @@ export const CategoriesScreen = (): JSX.Element => {
           <FontAwesomeIcon icon={faPlus} />
         </a>
       </div>
-      
     </div>
   );
 };

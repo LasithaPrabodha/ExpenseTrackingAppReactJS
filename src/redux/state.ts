@@ -1,12 +1,20 @@
-import { EntityState, createEntityAdapter } from "@reduxjs/toolkit";
+import { Category } from "../models/category";
 import { Expense } from "../models/expense";
 
-export interface ExpensesState extends EntityState<Expense> {
-  isLoading: boolean
+export interface ExpensesState {
+  isLoading: boolean;
+  expenses: Expense[];
 }
 
-export const adapter = createEntityAdapter<Expense>();
-
-export const initialState: ExpensesState = adapter.getInitialState({
+export const initialExpensesState: ExpensesState = {
   isLoading: false,
-});
+  expenses: [],
+};
+
+export interface CategoriesState {
+  categories: Category[];
+}
+
+export const initialCategoriesState: CategoriesState = {
+  categories: [],
+};

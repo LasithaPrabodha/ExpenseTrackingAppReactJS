@@ -12,6 +12,10 @@
     align-items: center;
     flex-direction: row;
     padding: 8px 0;
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 20px); 
+    margin: 0 auto;
 
     .category-color {
       width: 32px;
@@ -30,6 +34,7 @@
       border-radius: 8px;
       padding-left: 8px;
       margin-left: 16px;
+      font-size: 16px;
     }
 
     .btn-add {

@@ -10,6 +10,7 @@ import { SettingsScreen } from "./pages/SettingsScreen";
 import { CategoriesScreen } from "./pages/CategoriesScreen";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import Notification from "./components/Notification";
 
 function TitleWrapper() {
   const location = useLocation();
@@ -68,6 +69,7 @@ function App() {
         </Route>
         <Route path="/categories" element={<CategoriesScreen />} />
       </Routes>
+      <Notification />
     </div>
   );
 }

@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import { v4 as uuid } from "uuid";
 
 import { ListItem } from "../components/ListItem";
 import { Recurrence } from "../types/recurrence";
 import { Category } from "../models/category";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store"; 
+import { AppDispatch, RootState } from "../redux/store";
 import { Expense } from "../models/expense";
 import { addExpenseAction } from "../redux/actions/expenseActions";
 import "./AddExpenseScreen.scss";
+import { fetchCategoriesAction } from "../redux/actions/categoryActions";
 
 export const AddExpenseScreen = (): JSX.Element => {
   const categories: Category[] = useSelector((state: RootState) => state.categories.categories);
@@ -26,6 +26,7 @@ export const AddExpenseScreen = (): JSX.Element => {
     setRecurrence(selectedRecurrence as Recurrence);
     toggleBottomSheet();
   };
+
   useEffect(() => {
     function handleClickOutside(event: any) {
       if (
@@ -41,10 +42,16 @@ export const AddExpenseScreen = (): JSX.Element => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [bottomSheetRef]);
+
+  useEffect(() => {
+    dispatch(fetchCategoriesAction());
+  }, [dispatch]);
+
   const selectCategory = (selectedCategory: Category) => {
     setCategory(selectedCategory);
     toggleBottomSheet();
   };
+
   const toggleBottomSheet = () => {
     const elm = bottomSheetRef.current!;
     if (elm.style.display === "none" || elm.style.display === "") {
@@ -53,6 +60,7 @@ export const AddExpenseScreen = (): JSX.Element => {
       elm.style.display = "none";
     }
   };
+
   const clearForm = () => {
     setAmount("");
     setRecurrence(Recurrence.None);
@@ -62,15 +70,12 @@ export const AddExpenseScreen = (): JSX.Element => {
   };
 
   const submitExpense = () => {
-    // add
-
     if (!amount || !note) {
-      alert("Please fill both amount and note")
+      alert("Please fill both amount and note");
       return;
     }
 
     const expense = new Expense({
-      id: uuid(),
       amount: parseFloat(amount),
       recurrence,
       date,
@@ -80,6 +85,7 @@ export const AddExpenseScreen = (): JSX.Element => {
 
     dispatch(addExpenseAction(expense));
     clearForm();
+    window.navigator?.vibrate?.(200);
   };
 
   return (
@@ -120,7 +126,7 @@ export const AddExpenseScreen = (): JSX.Element => {
               id="start"
               name="trip-start"
               value={new Date(date).toISOString().split("T")[0]}
-              onChange={()=>{}}
+              onChange={() => {}}
               min={
                 new Date(new Date().getFullYear() - 1, new Date().getMonth(), new Date().getDate())
                   .toISOString()

@@ -7,6 +7,8 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { ThemeProvider } from "./Theme";
 import * as sw from "./service-worker-registration";
+import { addMultipleExpensesAction } from "./redux/actions/expenseActions";
+import { addMultipleCategoriesAction } from "./redux/actions/categoryActions";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
@@ -21,4 +23,10 @@ root.render(
   </React.StrictMode>
 );
 
-sw.register();
+sw.register((message: MessageEvent<any>) => {
+  if (message.type === "expenses") {
+    store.dispatch(addMultipleExpensesAction(message.data));
+  } else {
+    store.dispatch(addMultipleCategoriesAction(message.data.data));
+  }
+});
