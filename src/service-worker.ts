@@ -1,12 +1,9 @@
-/// <reference lib="webworker" />
-/* eslint-disable no-restricted-globals */
-
-import { PrecacheEntry, PrecacheRoute as _ } from "workbox-precaching";
 import IndexDbManager from "./lib/indexdb-manager";
+import { PrecacheEntry } from "workbox-precaching";
 
 declare const self: ServiceWorkerGlobalScope;
 
-const VERSION = "v1.0.1";
+const VERSION = "v1.0.3";
 
 // Create a base cache on Install
 self.addEventListener("install", (event: ExtendableEvent) => {

@@ -27,6 +27,6 @@ sw.register((message: MessageEvent<any>) => {
   if (message.type === "expenses") {
     store.dispatch(addMultipleExpensesAction(message.data));
   } else {
-    store.dispatch(addMultipleCategoriesAction(message.data.data));
+    store.dispatch(addMultipleCategoriesAction(message.data));
   }
 });

@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 const Notification = () => {
   const [notification, setNotification] = useState({ title: "", body: "" });
   const notify = () => toast(<ToastDisplay />);
+  
   function ToastDisplay() {
     return (
       <div>
@@ -20,7 +21,7 @@ const Notification = () => {
     if (notification?.title) {
       notify();
     }
-  }, [notification]);
+  }, [notification, notify]);
 
   useEffect(() => {
     requestForToken();

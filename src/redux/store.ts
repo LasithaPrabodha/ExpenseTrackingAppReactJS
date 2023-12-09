@@ -12,7 +12,7 @@ export const store = configureStore({
         // Ignore these field paths in all actions
         ignoredActionPaths: ["meta.arg", "payload.data"],
         // Ignore these paths in the state
-        ignoredPaths: ["expenses.entities", "categories.categories"],
+        ignoredPaths: ["expenses.entities", "categories.categories", "expenses.expenses"],
       },
     }),
 });

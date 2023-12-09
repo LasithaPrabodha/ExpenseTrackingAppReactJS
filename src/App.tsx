@@ -11,6 +11,7 @@ import { CategoriesScreen } from "./pages/CategoriesScreen";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import Notification from "./components/Notification";
+import { getLocation } from "./lib/geolocation";
 
 function TitleWrapper() {
   const location = useLocation();
@@ -57,6 +58,14 @@ const Title = memo(({ title, isSeparate, theme }: { title: string; isSeparate: b
 
 function App() {
   const { theme } = useContext(ThemeContext);
+
+  getLocation().then(
+    (location: GeolocationPosition) => {
+      console.log(location.coords)
+      localStorage.setItem("previousLocation", JSON.stringify(location.coords));
+    },
+    (err) => console.log(err)
+  );
 
   return (
     <div className={`App ${theme}`}>

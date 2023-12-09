@@ -42,6 +42,10 @@ export const AddExpenseScreen = (): JSX.Element => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [bottomSheetRef]);
+  
+  useEffect(()=>{
+    setCategory(categories[0])
+  },[categories])
 
   useEffect(() => {
     dispatch(fetchCategoriesAction());

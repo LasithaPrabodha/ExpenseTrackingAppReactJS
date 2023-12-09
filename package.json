@@ -1,5 +1,5 @@
 {
-  "homepage": "https://lasithaprabodha.github.io/ExpenseTrackingAppReactJS/",
+  "homepage": "https://expense-tracking-app-react-js.vercel.app/",
   "name": "expense-tracking-app",
   "version": "0.1.0",
   "private": true,
@@ -27,15 +27,14 @@
     "react-scripts": "5.0.1",
     "react-switch": "^7.0.0",
     "typescript": "^4.9.5",
-    "workbox-precaching": "^7.0.0"
+    "workbox-precaching": "^6.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "react-scripts build",
-    "deploy": "gh-pages -d build"
+    "deploy": "vercel --prod"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +57,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "gh-pages": "^6.1.0",
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
+    "vercel": "^32.6.1"
   }
 }

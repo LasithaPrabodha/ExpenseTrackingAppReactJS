@@ -19,18 +19,10 @@ declare global {
 }
 
 export function register(onMessage: any) {
-  if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator && "SyncManager" in window) {
-    // The URL constructor is available in all browsers that support SW.
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
-    if (publicUrl.origin !== window.location.origin) {
-      return;
-    }
-
-    window.addEventListener("load", () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-
+  window.addEventListener("load", () => {
+    if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator && "SyncManager" in window) {
       navigator.serviceWorker
-        .register(swUrl)
+        .register('/service-worker.js', { scope: "/" })
         .then(() => navigator.serviceWorker.ready)
         .then((registration) => {
           if (registration.sync != null) {
@@ -43,22 +35,22 @@ export function register(onMessage: any) {
 
           const channelE = new BroadcastChannel("indexdb-expenses");
 
-          channelE.addEventListener("message", (event) => {
+          channelE.addEventListener("message", ({ data }) => {
             // event is a MessageEvent object
-            onMessage({ type: "expenses", data: event });
+            onMessage({ type: "expenses", data });
           });
 
           const channelC = new BroadcastChannel("indexdb-categories");
-          channelC.addEventListener("message", (event) => {
+          channelC.addEventListener("message", ({ data }) => {
             // event is a MessageEvent object
-            onMessage({ type: "categories", data: event });
+            onMessage({ type: "categories", data });
           });
         })
         .catch((error) => {
           console.error("Error during service worker registration:", error);
         });
-    });
-  }
+    }
+  });
 }
 
 export function unregister() {
