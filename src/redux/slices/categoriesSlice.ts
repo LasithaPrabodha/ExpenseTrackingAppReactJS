@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {Expense} from '../models/expense';
-import {Category} from '../models/category';
+import {Expense} from '../../models/expense';
+import {Category} from '../../models/category';
 
 interface CategoriesState {
   categories: Category[];
