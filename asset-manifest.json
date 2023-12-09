@@ -2,8 +2,8 @@
   "files": {
     "main.css": "/ExpenseTrackingAppReactJS/static/css/main.d8e655ee.css",
     "main.js": "/ExpenseTrackingAppReactJS/static/js/main.87ddee96.js",
-    "index.html": "/ExpenseTrackingAppReactJS/index.html",
     "service-worker.js": "/ExpenseTrackingAppReactJS/service-worker.js",
+    "index.html": "/ExpenseTrackingAppReactJS/index.html",
     "main.d8e655ee.css.map": "/ExpenseTrackingAppReactJS/static/css/main.d8e655ee.css.map",
     "main.87ddee96.js.map": "/ExpenseTrackingAppReactJS/static/js/main.87ddee96.js.map"
   },
