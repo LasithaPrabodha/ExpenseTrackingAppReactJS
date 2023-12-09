@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../redux/store";
 import { Expense } from "../models/expense";
 import { ExpensesList } from "../components/ExpensesList";
-import { fetchExpensesAction } from "../redux/actions/expenseActions";
-import { allExpensesSelector } from "../redux/selectors/expenseSelectors";
+import { fetchExpensesAction } from "../redux/actions/expenseActions"; 
+import { allExpensesSelector } from "../redux/selectors";
 
 import "./ExpensesScreen.scss";
 

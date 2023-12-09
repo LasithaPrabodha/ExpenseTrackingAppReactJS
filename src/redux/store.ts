@@ -1,19 +1,18 @@
-import {configureStore} from '@reduxjs/toolkit';
-import expensesReducer from './slices/expensesSlice';
-import categoriesReducer from './slices/categoriesSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import { expensesReducer, categoriesReducer } from "./reducers";
 
 export const store = configureStore({
   reducer: {
     expenses: expensesReducer,
     categories: categoriesReducer,
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         // Ignore these field paths in all actions
-        ignoredActionPaths: ['meta.arg', 'payload.data'],
+        ignoredActionPaths: ["meta.arg", "payload.data"],
         // Ignore these paths in the state
-        ignoredPaths: ['expenses.entities', 'categories.categories'],
+        ignoredPaths: ["expenses.entities", "categories.categories"],
       },
     }),
 });
