@@ -9,19 +9,19 @@ export const HomeScreen = (): JSX.Element => {
       <Outlet />
 
       <div className="tab-bar">
-        <Link to="/" state={{ title: "Expenses", separateScreen:false }}>
+        <Link to="/" >
           <div className="tab-item">
             <FontAwesomeIcon icon={faArrowUpFromBracket} />
             Expenses
           </div>
         </Link>
-        <Link to="/add" state={{ title: "Add Expense", separateScreen:false }}>
+        <Link to="/add" >
           <div className="tab-item">
             <FontAwesomeIcon icon={faPlus} />
             Add
           </div>
         </Link>
-        <Link to="/settings" state={{ title: "Settings", separateScreen:false }}>
+        <Link to="/settings" >
           <div className="tab-item">
             <FontAwesomeIcon icon={faGear} />
             Settings

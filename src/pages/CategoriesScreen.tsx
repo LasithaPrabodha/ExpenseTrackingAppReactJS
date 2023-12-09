@@ -5,7 +5,7 @@ import { CategoryRow } from "../components/CategoryRow";
 import { Category } from "../models/category";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { addCategory } from "../redux/categoriesSlice";
+import { addCategory } from "../redux/slices/categoriesSlice";
 
 import "./CategoriesScreen.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

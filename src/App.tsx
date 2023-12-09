@@ -15,7 +15,26 @@ function TitleWrapper() {
   const location = useLocation();
   const { theme } = useContext(ThemeContext);
 
-  return <Title theme={theme} isSeparate={!!location.state["separateScreen"]} title={location.state["title"]} />;
+  let title = "";
+  let isSeparate = false;
+
+  switch (location.pathname) {
+    case "/":
+      title = "Expenses";
+      break;
+    case "/settings":
+      title = "Settings";
+      break;
+    case "/add":
+      title = "Add Expense";
+      break;
+    case "/categories":
+      isSeparate = true;
+      title = "Categories";
+      break;
+  }
+
+  return <Title theme={theme} isSeparate={isSeparate} title={title} />;
 }
 
 const Title = memo(({ title, isSeparate, theme }: { title: string; isSeparate: boolean; theme: string }) => {
@@ -23,7 +42,7 @@ const Title = memo(({ title, isSeparate, theme }: { title: string; isSeparate: b
     <div className="header">
       {isSeparate ? (
         <div className="btn-back">
-          <Link to="/settings" state={{ title: "Settings" }}>
+          <Link to="/settings">
             <FontAwesomeIcon icon={faChevronLeft} color={theme === "dark-theme" ? "#fff" : "#1c1c1e"} />
           </Link>
         </div>

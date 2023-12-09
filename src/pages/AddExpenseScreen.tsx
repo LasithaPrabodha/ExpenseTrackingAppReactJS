@@ -5,14 +5,14 @@ import { ListItem } from "../components/ListItem";
 import { Recurrence } from "../types/recurrence";
 import { Category } from "../models/category";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-import { addExpense } from "../redux/expensesSlice";
+import { AppDispatch, RootState } from "../redux/store"; 
 import { Expense } from "../models/expense";
+import { addExpenseAction } from "../redux/actions/expenseActions";
 import "./AddExpenseScreen.scss";
 
 export const AddExpenseScreen = (): JSX.Element => {
   const categories: Category[] = useSelector((state: RootState) => state.categories.categories);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const bottomSheetRef = useRef<HTMLDivElement>(null);
 
   const [sheetView, setSheetView] = useState<"recurrence" | "category">("recurrence");
@@ -78,7 +78,7 @@ export const AddExpenseScreen = (): JSX.Element => {
       category,
     });
 
-    dispatch(addExpense(expense));
+    dispatch(addExpenseAction(expense));
     clearForm();
   };
 

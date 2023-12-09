@@ -2,17 +2,20 @@ import React, { useEffect, useRef, useState } from "react";
 import { getPlainRecurrence } from "../utils/recurrence";
 import { Recurrence } from "../types/recurrence";
 import { getGroupedExpenses } from "../utils/expenses";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../redux/store";
 import { Expense } from "../models/expense";
 import { ExpensesList } from "../components/ExpensesList";
+import { fetchExpensesAction } from "../redux/actions/expenseActions";
+import { allExpensesSelector } from "../redux/selectors/expenseSelectors";
 
 import "./ExpensesScreen.scss";
 
 export const ExpensesScreen = (): JSX.Element => {
-  const expenses: Expense[] = useSelector((state: RootState) => state.expenses.expenses);
-  const [recurrence, setRecurrence] = useState(Recurrence.Weekly);
   const recurrenceSheetRef = useRef<HTMLDivElement>(null);
+  const dispatch = useDispatch<AppDispatch>();
+  const expenses: Expense[] = useSelector(allExpensesSelector);
+  const [recurrence, setRecurrence] = useState(Recurrence.Weekly);
 
   const groupedExpenses = getGroupedExpenses(expenses, recurrence);
   const total = groupedExpenses.reduce((sum, group) => (sum += group.total), 0);
@@ -32,6 +35,10 @@ export const ExpensesScreen = (): JSX.Element => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [recurrenceSheetRef]);
+
+  useEffect(() => {
+    dispatch(fetchExpensesAction());
+  }, [dispatch]);
 
   const changeRecurrence = (newRecurrence: Recurrence) => {
     setRecurrence(newRecurrence);
