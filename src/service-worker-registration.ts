@@ -43,15 +43,15 @@ export function register(onMessage: any) {
 
           const channelE = new BroadcastChannel("indexdb-expenses");
 
-          channelE.addEventListener("message", (event) => {
+          channelE.addEventListener("message", ({data}) => {
             // event is a MessageEvent object
-            onMessage({ type: "expenses", data: event });
+            onMessage({ type: "expenses", data });
           });
 
           const channelC = new BroadcastChannel("indexdb-categories");
-          channelC.addEventListener("message", (event) => {
+          channelC.addEventListener("message", ({data}) => {
             // event is a MessageEvent object
-            onMessage({ type: "categories", data: event });
+            onMessage({ type: "categories", data });
           });
         })
         .catch((error) => {
