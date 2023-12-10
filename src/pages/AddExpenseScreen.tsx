@@ -9,9 +9,10 @@ import { Expense } from "../models/expense";
 import { addExpenseAction } from "../redux/actions/expenseActions";
 import "./AddExpenseScreen.scss";
 import { fetchCategoriesAction } from "../redux/actions/categoryActions";
+import { allCategoriesSelector } from "../redux/selectors";
 
 export const AddExpenseScreen = (): JSX.Element => {
-  const categories: Category[] = useSelector((state: RootState) => state.categories.categories);
+  const categories: Category[] = useSelector(allCategoriesSelector);
   const dispatch = useDispatch<AppDispatch>();
   const bottomSheetRef = useRef<HTMLDivElement>(null);
 
@@ -42,10 +43,10 @@ export const AddExpenseScreen = (): JSX.Element => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [bottomSheetRef]);
-  
-  useEffect(()=>{
-    setCategory(categories[0])
-  },[categories])
+
+  useEffect(() => {
+    setCategory(categories[0]);
+  }, [categories]);
 
   useEffect(() => {
     dispatch(fetchCategoriesAction());

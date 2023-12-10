@@ -7,11 +7,18 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import Switch from "react-switch";
 import "./SettingsScreen.scss";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../redux/store";
+import { deleteAllExpenses } from "../redux/actions/expenseActions";
+import { deleteAllCategory } from "../redux/actions/categoryActions";
 
 export const SettingsScreen = (): JSX.Element => {
+  const dipatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const onClickErase = () => {
     if (window.confirm("Are you sure? This action cannot be undone")) {
+      dipatch(deleteAllExpenses());
+      dipatch(deleteAllCategory());
     } else {
     }
   };

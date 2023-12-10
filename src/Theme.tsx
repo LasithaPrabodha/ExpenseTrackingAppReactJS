@@ -8,7 +8,7 @@ const ThemeContext = createContext<{
   theme: string;
   setTheme: React.Dispatch<React.SetStateAction<string>>;
   toggleTheme: () => void;
-}>({ theme: "light", setTheme: () => {}, toggleTheme: () => {} });
+}>({ theme: "dark-theme", setTheme: () => {}, toggleTheme: () => {} });
 
 const getTheme = () => {
   const theme = localStorage.getItem("theme");

@@ -16,10 +16,10 @@ export const ExpensesScreen = (): JSX.Element => {
   const dispatch = useDispatch<AppDispatch>();
   const expenses: Expense[] = useSelector(allExpensesSelector);
   const [recurrence, setRecurrence] = useState(Recurrence.Weekly);
-
+ 
   const groupedExpenses = getGroupedExpenses(expenses, recurrence);
   const total = groupedExpenses.reduce((sum, group) => (sum += group.total), 0);
-
+ 
   useEffect(() => {
     function handleClickOutside(event: any) {
       if (

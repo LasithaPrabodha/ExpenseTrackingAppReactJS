@@ -1,66 +1,102 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { collection, deleteDoc, doc, getDocs, setDoc, writeBatch } from "firebase/firestore";
-import { firestore } from "../../database/config";
-import { Category } from "../../models/category";
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import {collection, deleteDoc, doc, getDocs, setDoc, writeBatch} from 'firebase/firestore';
+import {firestore} from '../../database/config';
+import {Category} from '../../models/category';
 import IndexDbManager from "../../lib/indexdb-manager";
 
-export const fetchCategoriesAction = createAsyncThunk("categories/fetch", async () => {
-  try {
-    let categoriesIndexDb = (await IndexDbManager.getFromStore(IndexDbManager.catStoreName)) as any[];
+export const fetchCategoriesAction = createAsyncThunk(
+  'categories/fetch',
+  async (_, {rejectWithValue}) => { 
+
+    try {
+      let categoriesIndexDb = (await IndexDbManager.getFromStore(IndexDbManager.catStoreName)) as any[];
     categoriesIndexDb = categoriesIndexDb.map((e) => new Category(e));
 
     if (!navigator.onLine) {
       return { data: categoriesIndexDb };
     }
+      const ref = collection(firestore, 'users', 'test-user', 'category-list');
+      const querySnapshot = await getDocs(ref);
+      let categories: any[] = [];
 
-    const ref = collection(firestore, "users/test-user/category-list");
-    const querySnapshot = await getDocs(ref);
-    let categories: any[] = [];
+      querySnapshot?.forEach(doc => {
+        const data = doc.data();
+        const category = {...data, id: doc.id};
+        categories.push(category);
+      });
 
-    querySnapshot?.forEach((doc) => {
-      const data = doc.data();
-      const category = { ...data, id: doc.id };
-      categories.push(category);
-    });
+      return {data: categories};
+    } catch (error: any) {
+      console.error(error);
+      return rejectWithValue(error.message);
+    }
+  },
+);
 
-    const missingInIndexDb = categories.reduce((prev: any[], curr) => {
-      const index = categoriesIndexDb.findIndex((ei) => ei.id === curr.id);
-      if (index === -1) {
-        prev.push(curr);
-      }
+export const addCategoryAction = createAsyncThunk(
+  'categories/add',
+  async (category: Category, {rejectWithValue}) => { 
 
-      return prev;
-    }, []);
-
-    missingInIndexDb.length && IndexDbManager.addToStore(missingInIndexDb, IndexDbManager.catStoreName);
-
-    return { data: categories };
-  } catch (error: any) {
-    console.log(error);
-    return { error: error.message };
-  }
-});
-
-export const addCategoryAction = createAsyncThunk("categories/add", async (category: Category) => {
-  try {
-    const id = doc(collection(firestore, "users/test-user/category-list")).id;
-
-    // save in indexdb
+    try {
+      const id = doc(
+        collection(firestore, 'users', 'test-user', 'category-list'),
+      ).id;
+       // save in indexdb
     IndexDbManager.addToStore({ ...category, id }, IndexDbManager.catStoreName);
 
-    if (!navigator.onLine) return;
+    if (!navigator.onLine) return {data: category};
 
-    // save in firestore
-    await setDoc(doc(firestore, "users/test-user/category-list", id), category.toFirestoreObject());
+      // save in firestore
+      await setDoc(
+        doc(firestore, 'users', 'test-user', 'category-list', id),
+        category.toFirestoreObject(),
+      );
 
-    return { data: id };
-  } catch (error: any) {
-    console.error(error.message);
-    return { error: error.message };
-  }
-});
+      return {data: category};
+    } catch (error: any) {
+      console.error(error.message);
+      return rejectWithValue(error.message);
+    }
+  },
+);
 
-export const addMultipleCategoriesAction = createAsyncThunk("categories/add-multiple", async (categories: any[]) => {
+export const deleteCategory = createAsyncThunk(
+  'categories/delete',
+  async (categoryId: string, thunkAPI) => {
+
+    try {
+      await deleteDoc(
+        doc(firestore, 'users', 'test-user', 'category-list', categoryId),
+      );
+      await thunkAPI.dispatch(fetchCategoriesAction());
+      return {data: null};
+    } catch (error: any) {
+      console.error(error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+export const deleteAllCategory = createAsyncThunk(
+  'categories/deleteAll',
+  async (_, thunkAPI) => {
+    try {
+
+      const ref = collection(firestore, 'users', 'test-user', 'category-list');
+      const querySnapshot = await getDocs(ref);
+
+      querySnapshot?.forEach(doc => {
+        deleteDoc(doc.ref);
+      });
+
+      await thunkAPI.dispatch(fetchCategoriesAction());
+      return {data: null};
+    } catch (error: any) {
+      console.error(error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+export const addMultipleCategoriesAction = createAsyncThunk("categories/add-multiple", async (categories: any[], thunkAPI) => {
   try {
     if (!categories.length) return { data: [] };
 
@@ -92,18 +128,9 @@ export const addMultipleCategoriesAction = createAsyncThunk("categories/add-mult
     });
     await batch.commit();
 
+    await thunkAPI.dispatch(fetchCategoriesAction())
+
     return { data: categoriesNotInFirestore };
-  } catch (error: any) {
-    console.error(error.message);
-    return { error: error.message };
-  }
-});
-
-export const deleteCategory = createAsyncThunk("categories/fetch", async (categoryId: string) => {
-  try {
-    await deleteDoc(doc(firestore, "users/test-user/category-list", categoryId));
-
-    return { data: null };
   } catch (error: any) {
     console.error(error.message);
     return { error: error.message };
