@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { onMessageListener, requestForToken } from "../database/config";
+import { onMessageListener } from "../database/config";
 import toast, { Toaster } from "react-hot-toast";
 
 const Notification = () => {
   const [notification, setNotification] = useState({ title: "", body: "" });
   const notify = () => toast(<ToastDisplay />);
-  
+
   function ToastDisplay() {
     return (
       <div>
@@ -23,12 +23,9 @@ const Notification = () => {
     }
   }, [notification, notify]);
 
-  useEffect(() => {
-    requestForToken();
-  }, []);
-
   onMessageListener()
     .then((payload: any) => {
+      console.log(payload);
       setNotification({ title: payload?.notification?.title, body: payload?.notification?.body });
     })
     .catch((err) => console.log("failed: ", err));
